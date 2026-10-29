@@ -1,0 +1,18 @@
+// Reconstructed scaffold; not the original build configuration.
+plugins { id 'com.android.application' }
+android {
+    namespace 'app.pelican.check'
+    compileSdk 35
+    defaultConfig {
+        applicationId 'app.pelican.monitor'
+        minSdk 26
+        targetSdk 34
+        versionCode 8
+        versionName '2.4'
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+dependencies { implementation fileTree(dir: 'libs', include: ['*.jar']) }

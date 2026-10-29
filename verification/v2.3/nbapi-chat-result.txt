@@ -1,0 +1,6 @@
+GENERATION 2/3 route=/v1/chat/completions output-cap=512
+requestOk=true svgOk=false attempts=1 deltas=67 input=90 output=73 reason=null
+error=SVG 结构无法解析
+bodyBytes=417 contentVerified=true wireBytesVerified=true localEstimate=91 countReliable=false expected=null note=未确认该中转模型的真实分词器；仅用 o200k_base 估算，不触发疑似注入
+仅能估算，已按严格模式跳过疑似注入告警
+TOTAL GENERATION REQUESTS across providers=2/3. No scheduler started.

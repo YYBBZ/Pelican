@@ -1,0 +1,20 @@
+[
+  {
+    "url": "https://repo.maven.apache.org/maven2/com/knuddels/jtokkit/1.1.0/jtokkit-1.1.0.jar",
+    "file": "app/libs/jtokkit-1.1.0.jar",
+    "bytes": 3246331,
+    "sha256": "1501ce0259ab897c6746ccfafa1d208acd404fb17e1ac62e157172f2678b1183"
+  },
+  {
+    "url": "https://jitpack.io/com/github/PhilJay/MPAndroidChart/v3.1.0/MPAndroidChart-v3.1.0.aar",
+    "file": "tools/vendor/MPAndroidChart-v3.1.0.aar",
+    "bytes": 356115,
+    "sha256": "56cd113c319b301c65078ec8a26f2f8f67aa4eec8d6913c9f00ad62c35430bd1"
+  },
+  {
+    "url": "https://dl.google.com/dl/android/maven2/androidx/annotation/annotation/1.0.0/annotation-1.0.0.jar",
+    "file": "app/libs/androidx-annotation-1.0.0.jar",
+    "bytes": 25378,
+    "sha256": "0baae9755f7caf52aa80cd04324b91ba93af55d4d1d17dcc9a7b53d99ef7c016"
+  }
+]

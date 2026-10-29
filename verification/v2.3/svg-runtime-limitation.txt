@@ -1,0 +1,7 @@
+This is a JVM SDK-stub environment, not a device rendering test:
+java.lang.RuntimeException: Stub!
+	at android.util.Xml.newPullParser(Xml.java:31)
+	at com.caverock.androidsvg.SVGParser.parseUsingXmlPullParser(SVGParser.java:689)
+	at com.caverock.androidsvg.SVGParser.parse(SVGParser.java:603)
+	at com.caverock.androidsvg.SVG.getFromString(SVG.java:165)
+	at SvgEnvironmentCheck.main(SvgEnvironmentCheck.java:6)

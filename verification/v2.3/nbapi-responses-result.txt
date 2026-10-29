@@ -1,0 +1,6 @@
+GENERATION 3/3 route=/v1/responses output-cap=512
+requestOk=true svgOk=false attempts=1 deltas=67 input=4306 output=73 reason=0
+error=SVG 结构无法解析
+bodyBytes=363 contentVerified=true wireBytesVerified=true localEstimate=91 countReliable=false expected=null note=计数接口 HTTP 404，仅保留本地估算，不触发疑似注入
+仅能估算，已按严格模式跳过疑似注入告警
+TOTAL GENERATION REQUESTS across providers=3/3. No scheduler started.

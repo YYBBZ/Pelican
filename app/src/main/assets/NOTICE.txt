@@ -1,0 +1,53 @@
+Pelican 2.4
+
+This application uses the following open-source components:
+
+OkHttp 4.12.0
+Copyright Square, Inc.
+https://github.com/square/okhttp
+Licensed under Apache License 2.0.
+
+Okio 3.6.0
+Copyright Square, Inc.
+https://github.com/square/okio
+Licensed under Apache License 2.0.
+
+Gson 2.11.0
+Copyright Google Inc.
+https://github.com/google/gson
+Licensed under Apache License 2.0.
+
+AndroidSVG 1.4
+Copyright 2013-2019 Paul LeBeau and contributors
+https://github.com/BigBadaboom/androidsvg
+Licensed under Apache License 2.0.
+
+Kotlin standard library 1.9.24
+Copyright JetBrains s.r.o.
+https://github.com/JetBrains/kotlin
+Licensed under Apache License 2.0.
+
+The Apache License 2.0 text is included in LICENSE-APACHE-2.0.txt.
+Monitoring, retry, baseline, history and UI logic are implemented by this project.
+
+MPAndroidChart 3.1.0
+Copyright Philipp Jahoda and contributors
+https://github.com/PhilJay/MPAndroidChart
+Licensed under Apache License 2.0. No library sources were modified.
+
+AndroidX annotations 1.0.0
+Copyright The Android Open Source Project
+Licensed under Apache License 2.0.
+
+JTokkit 1.1.0
+Copyright (c) 2023 Knuddels, Philip Müller
+https://github.com/knuddelsgmbh/jtokkit
+Licensed under the MIT License; text included in LICENSE-JTOKKIT-MIT.txt.
+No library sources were modified. Encoding vocabularies are bundled for offline use.
+
+Pelican 2.4 changes: rebuilt editor/settings and chart UI; immutable request audit,
+strict token comparison policy, normalized API inputs, and adaptive launcher artwork.
+
+Pelican 2.4 changes: configurable local-input anomaly screening, original-preserving
+history reassessment, per-line prompt sequences, editable sample/retry counts,
+seven explicit reasoning levels and shared multiplied quality thresholds.

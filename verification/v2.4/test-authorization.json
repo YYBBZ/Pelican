@@ -1,0 +1,9 @@
+{
+  "supersedes": "v2.3 3-request cap",
+  "authorizedBy": "User 2.4 confirmed requirements",
+  "host": "new.nbapi.cc",
+  "baseUrl": "https://new.nbapi.cc/v1",
+  "requestCountCap": null,
+  "creditCap": null,
+  "executionPolicy": "Run only necessary bounded batches; never silently start scheduled monitoring; no credentials in artifacts"
+}
