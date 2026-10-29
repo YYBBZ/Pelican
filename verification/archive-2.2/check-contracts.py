@@ -1,6 +1,6 @@
 from pathlib import Path
 import re,sqlite3
-b=Path('/workspace/Pelican/app/src/main/java/app/pelican/check')
+b=Path(__file__).resolve().parents[2]/'app/src/main/java/app/pelican/check'
 s=(b/'Store.java').read_text();create=s[s.index('public void onCreate'):s.index('public void onUpgrade')]
 sqls=re.findall(r'execSQL\("([^"\n]+)"\)',create)
 db=sqlite3.connect(':memory:')

@@ -1,6 +1,6 @@
 from pathlib import Path
 import re,sqlite3,xml.etree.ElementTree as ET
-r=Path('/workspace/Pelican');b=r/'app/src/main/java/app/pelican/check'
+r=Path(__file__).resolve().parents[2];b=r/'app/src/main/java/app/pelican/check'
 s=(b/'Store.java').read_text();create=s[s.index('public void onCreate'):s.index('public void onUpgrade')]
 db=sqlite3.connect(':memory:')
 for sql in re.findall(r'execSQL\("([^"\n]+)"\)',create):db.execute(sql)

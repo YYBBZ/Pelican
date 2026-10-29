@@ -1,5 +1,6 @@
+# 历史开发补丁，仅保留改动过程；不是构建步骤，不要对当前源码重复执行。
 from pathlib import Path
-b=Path('/workspace/Pelican/app/src/main/java/app/pelican/check')
+b=Path(__file__).resolve().parents[1]/'app/src/main/java/app/pelican/check'
 p=b/'ApiClient.java';s=p.read_text()
 a=s.index('    public app.pelican.check.ApiClient.ModelResult fetchModels(');z=s.index('    private com.google.gson.JsonObject payload(',a)
 s=s[:a]+'''    public app.pelican.check.ApiClient.ModelResult fetchModels(app.pelican.check.LineConfig config) {

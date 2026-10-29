@@ -1,5 +1,6 @@
+# 历史开发补丁，仅保留改动过程；不是构建步骤，不要对当前源码重复执行。
 from pathlib import Path
-p=Path('/workspace/Pelican/app/src/main/java/app/pelican/check/LineEditActivity.java');s=p.read_text()
+p=Path(__file__).resolve().parents[1]/'app/src/main/java/app/pelican/check/LineEditActivity.java';s=p.read_text()
 s=s.replace('private EditText name,base,key,model,customPrompt,interval,maxTokens,temperature,excess,lower;','private EditText name,base,key,model,interval,maxTokens,temperature,excess,lower,samples,retries,inputRatio,complexity;')
 s=s.replace('private Spinner protocol,promptMode,promptPreset,samples,effort,retries;','private Spinner protocol,effort,inputMode;\n    private SequenceEditor sequenceEditor;\n    private TextView reasoningNote,retryNote;')
 s=s.replace('config=new LineConfig();','config=LineConfig.createNew();').replace('getInt("defaultTokenExcess",500)','getInt("defaultTokenExcess24",800)')

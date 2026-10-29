@@ -15,7 +15,7 @@ import static org.junit.Assert.*;
 @ConscryptMode(ConscryptMode.Mode.OFF)
 public class LiveResponseReplayTest {
  @Test public void allCapturedRealResponsesParseWithAndroidSvg()throws Exception{
-  Path dir=Paths.get("/workspace/Pelican/verification/v2.4");int count=0;
+  Path dir=Paths.get(System.getProperty("pelican.root", ".")).toAbsolutePath().normalize().resolve("verification/v2.4");int count=0;
   try(DirectoryStream<Path> files=Files.newDirectoryStream(dir,"live-*.json")){
    for(Path file:files){JsonElement parsed=JsonParser.parseString(new String(Files.readAllBytes(file),"UTF-8"));if(!parsed.isJsonObject())continue;JsonObject o=parsed.getAsJsonObject();if(!o.has("generatedText"))continue;
     String text=o.get("generatedText").getAsString();SvgAnalyzer.Result analyzed=SvgAnalyzer.analyze(text);assertTrue(file.getFileName()+": "+analyzed.error,analyzed.ok);assertNotNull(com.caverock.androidsvg.SVG.getFromString(analyzed.svg));count++;

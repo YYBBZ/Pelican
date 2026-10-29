@@ -1,10 +1,41 @@
-# 构建产物
-build/
-app/build/
+# 构建产物与缓存
+/build/
+/app/build/
+.gradle/
 *.apk
 *.aab
-# 本地构建工具链（437MB 二进制，不入库）
-tools/
-# 系统杂物
-.DS_Store
+*.dex
+*.class
 *.log
+__pycache__/
+*.py[cod]
+
+# 本地 Android / R8 / Robolectric 工具链
+/tools/
+local.properties
+
+# IDE 与系统文件
+.idea/
+*.iml
+.DS_Store
+
+# 本地配置和凭据：不要提交真实接口密钥或签名文件
+.env
+.env.*
+!.env.example
+*.p12
+*.pfx
+*.jks
+*.keystore
+*.pem
+*.key
+*.secret
+id_rsa
+id_ed25519
+store-password.txt
+api-key
+signing/
+*-signing/
+
+# 手动联调的新输出；仓库中已有的历史样本不受影响
+/verification/local/

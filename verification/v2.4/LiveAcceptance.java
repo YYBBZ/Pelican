@@ -8,9 +8,12 @@ import java.util.concurrent.TimeUnit;
 /** Manual bounded batch only, no scheduled monitoring. Secret read from a temporary file. */
 public class LiveAcceptance {
  public static void main(String[] args)throws Exception{
-  Path dir=Paths.get("/workspace/Pelican/verification/v2.4");String key=new String(Files.readAllBytes(Paths.get(args[1])),"UTF-8").trim();
-  OkHttpClient http=new OkHttpClient.Builder().connectTimeout(20,TimeUnit.SECONDS).readTimeout(180,TimeUnit.SECONDS).callTimeout(210,TimeUnit.SECONDS).retryOnConnectionFailure(false).build();
-  LineConfig line=LineConfig.createNew();line.baseUrl="https://new.nbapi.cc/v1";line.apiKey=key;line.model="gpt-6.1-sol";line.retryCount=0;line.maxTokens=512;line.enabled=false;
+  if(args.length<2||(!"models".equals(args[0])&&!"generate".equals(args[0])))throw new IllegalArgumentException("Usage: models KEY_FILE or generate KEY_FILE PROTOCOL EFFORT BATCH");
+  if("generate".equals(args[0])&&args.length!=5)throw new IllegalArgumentException("Usage: generate KEY_FILE PROTOCOL EFFORT BATCH");
+  ManualTestConfig test=ManualTestConfig.load("v2.4",!"models".equals(args[0]));
+  Path dir=test.outputDir;String key=ManualTestConfig.readKey(args[1]);
+  OkHttpClient http=new OkHttpClient.Builder().connectTimeout(20,TimeUnit.SECONDS).readTimeout(180,TimeUnit.SECONDS).callTimeout(210,TimeUnit.SECONDS).followRedirects(false).followSslRedirects(false).retryOnConnectionFailure(false).build();
+  LineConfig line=LineConfig.createNew();line.baseUrl=test.baseUrl;line.apiKey=key;line.model=test.model;line.retryCount=0;line.maxTokens=512;line.enabled=false;
   ApiClient api=new ApiClient(null,http);
   try{
    if(args[0].equals("models")){

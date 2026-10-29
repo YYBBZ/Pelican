@@ -1,4 +1,4 @@
-HTTP=200 ok=true count=7 route=https://api.viapi.cc/v1/models
+HTTP=200 ok=true count=7 route=https://relay-c.example.invalid/v1/models
 已获取 7 个模型
 examples=[codex-auto-review, gpt-5.6-sol, gpt-5.6-terra, gpt-6-astra, gpt-6-sol, gpt-6.1-sol, gpt-6.1-terra]
 TOTAL GENERATION REQUESTS=0/3. No scheduler started.

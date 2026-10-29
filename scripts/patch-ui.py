@@ -1,5 +1,6 @@
+# 历史开发补丁，仅保留改动过程；不是构建步骤，不要对当前源码重复执行。
 from pathlib import Path
-b=Path('/workspace/Pelican/app/src/main/java/app/pelican/check')
+b=Path(__file__).resolve().parents[1]/'app/src/main/java/app/pelican/check'
 def patch(name,old,new):
  p=b/(name+'.java');s=p.read_text();assert s.count(old)==1,(name,s.count(old),old[:65]);p.write_text(s.replace(old,new))
 def replace_method(name,signature,new):

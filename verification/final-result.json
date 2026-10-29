@@ -3,7 +3,7 @@
   "version": "2.4",
   "versionCode": 8,
   "applicationId": "app.pelican.monitor",
-  "apk": "/workspace/Pelican.apk",
+  "apk": "Pelican-2.4.apk",
   "apkBytes": 5340982,
   "apkSha256": "b962f69316736c51fec875fcdeb1eeb8c561e4e3c8bf455c91aedf01724bec50",
   "localChecksPassed": 253,
@@ -16,7 +16,7 @@
   "androidJvmTestPlatform": "Robolectric 4.16.1 Android API28 legacy graphics / JDK17 / aarch64; tests of UI/engine use explicit in-memory Store shadow; migration tests execute actual Store SQL on SQLite/JDBC bridge",
   "sqliteMigrationAndBackupRoundTripPassed": true,
   "realModelQuery": {
-    "baseUrl": "https://new.nbapi.cc/v1",
+    "baseUrl": "https://relay-b.example.invalid/v1",
     "status": 200,
     "modelCount": 10
   },

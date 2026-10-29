@@ -1,5 +1,6 @@
+# 历史开发补丁，仅保留改动过程；不是构建步骤，不要对当前源码重复执行。
 from pathlib import Path
-p=Path('/workspace/Pelican/app/src/main/java/app/pelican/check/ApiClient.java');s=p.read_text()
+p=Path(__file__).resolve().parents[1]/'app/src/main/java/app/pelican/check/ApiClient.java';s=p.read_text()
 s=s.replace('        int rawInputTokens;','        InputAudit.Evidence inputAudit;\n        int rawInputTokens;',1)
 s=s.replace('            attemptData3.durationMs = System.currentTimeMillis() - attemptData3.startedAt;','            attemptData3.inputAudit = genResultPerformOnce.inputAudit;\n            attemptData3.durationMs = System.currentTimeMillis() - attemptData3.startedAt;',1)
 s=s.replace('            sampleData.finalAttemptMs = genResultPerformOnce.totalMs;','            sampleData.inputAudit = genResultPerformOnce.inputAudit;\n            sampleData.finalAttemptMs = genResultPerformOnce.totalMs;',1)

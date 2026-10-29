@@ -1,6 +1,8 @@
 # Pelican 2.4 交付说明
 
-- `/workspace/Pelican.apk` 为最终签名安装包；2.4 / versionCode 8 / app.pelican.monitor。
+本文保留 2.4 发布时的交付与验证记录。后续的仓库整理没有重新打包，以下历史检查数字不代表每次更新后重新执行。
+
+- Release 附件 `Pelican-2.4.apk` 为最终签名安装包；2.4 / versionCode 8 / app.pelican.monitor。本地构建默认输出到 `build/Pelican.apk`，详见 [构建说明](BUILDING.md)。
 - 沿用2.3签名，支持覆盖安装。建议先导出备份，不要卸载。
 - 旧历史会在后台本地重判，完成信息可在「设置→输入异常筛查与旧历史重判」查看；资料不足明确标注。
 - 新版自定义题目顺序与进度按线路保存；旧线路初始化为原题目一条，编辑顺序表可再添加其余题目。
@@ -15,4 +17,4 @@
 - Android16 JVM兼容尝试受Robolectric Linux aarch64原生库缺失阻塞；不得宣称该项通过。
 - 尚未在用户小米Android16上安装验收，也未做实际桌面渲染/后台长时间运行验证。
 
-详细结果见 verification/final-result.json 和 verification/v2.4/ 各项日志。测试密钥临时文件已删除。
+详细汇总和样本见 `verification/final-result.json`、`verification/v2.4/`。本机 `.log` 构建日志未随仓库完整提交；测试站点已在公开副本中替换为示例地址，详见 [验证资料说明](../verification/README.md)。历史记录称临时测试密钥文件已删除，本次整理不延续当时的调用授权。

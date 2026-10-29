@@ -1,15 +1,22 @@
 #!/bin/bash
 set -euo pipefail
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
-export JAVA_HOME="${JAVA_HOME:-/usr/lib/jvm/java-17-openjdk-arm64}"
-export PATH="$JAVA_HOME/bin:$PATH"
-ANDROID_JAR="${ANDROID_JAR:-$ROOT/../PelicanCheck-RecoveryTools/android-platform-35/android.jar}"
-RESOURCE_JAR="${RESOURCE_JAR:-$ROOT/tools/android34/android.jar}"
+# Use the caller's JDK and SDK instead of a machine-specific ARM installation.
+if [[ -n "${JAVA_HOME:-}" ]]; then export PATH="$JAVA_HOME/bin:$PATH"; fi
+SDK_ROOT="${ANDROID_SDK_ROOT:-${ANDROID_HOME:-}}"
+if [[ -z "${ANDROID_JAR:-}" ]]; then
+    if [[ -n "$SDK_ROOT" ]]; then ANDROID_JAR="$SDK_ROOT/platforms/android-35/android.jar";
+    else ANDROID_JAR="$ROOT/tools/android-35/android.jar"; fi
+fi
+RESOURCE_JAR="${RESOURCE_JAR:-$ANDROID_JAR}"
 R8_JAR="${R8_JAR:-$ROOT/tools/r8-8.3.37.jar}"
-SIGN_DIR="${SIGN_DIR:-$ROOT/../Pelican-signing}"
+SIGN_DIR="${SIGN_DIR:-${XDG_DATA_HOME:-$HOME/.local/share}/pelican/signing}"
+export ANDROID_JAR
+printf 'Local signing directory: %s\n' "$SIGN_DIR"
+echo 'A newly generated local key cannot update the official release APK.'
 for tool in java javac jar keytool aapt2 zipalign apksigner python3; do command -v "$tool" >/dev/null || { echo "Missing tool: $tool"; exit 2; }; done
 for file in "$ANDROID_JAR" "$RESOURCE_JAR" "$R8_JAR"; do test -f "$file" || { echo "Missing dependency: $file";exit 2; };done
-mkdir -p "$ROOT/build" "$ROOT/verification"
+mkdir -p "$ROOT/build" "$ROOT/verification/v2.4"
 rm -rf "$ROOT/build/classes" "$ROOT/build/generated" "$ROOT/build/dex" "$ROOT/build/tests"
 mkdir -p "$ROOT/build/"{classes,generated,dex,tests}
 python3 - "$ROOT" <<'PY'
@@ -52,7 +59,7 @@ with zipfile.ZipFile(r/'build/resources.ap_') as src,zipfile.ZipFile(r/'build/un
     out.writestr(n,jar.read(n));seen.add(n)
 print('Packaged',len(seen),'APK entries including required runtime resources')
 PY
-echo '[5/6] Align and sign with preserved Pelican key'
+echo '[5/6] Align and sign with the configured local key'
 mkdir -p "$SIGN_DIR";chmod 700 "$SIGN_DIR"
 if [[ ! -e "$SIGN_DIR/pelican.p12" ]]; then
     [[ ! -e "$SIGN_DIR/store-password.txt" ]] || { echo 'Password exists without matching key; refusing to overwrite';exit 3; }
@@ -70,8 +77,7 @@ echo '[6/6] Verify final installation artifact'
 apksigner verify --verbose --print-certs "$ROOT/build/Pelican.apk" > "$ROOT/verification/apk-signature.log" 2>&1
 zipalign -c -v 4 "$ROOT/build/Pelican.apk" > "$ROOT/verification/apk-alignment.log" 2>&1
 aapt2 dump badging "$ROOT/build/Pelican.apk" > "$ROOT/verification/apk-badging.log"
-cp "$ROOT/build/Pelican.apk" "$ROOT/../Pelican.apk"
-sha256sum "$ROOT/../Pelican.apk" > "$ROOT/verification/Pelican.apk.sha256"
+(cd "$ROOT/build" && sha256sum Pelican.apk > Pelican.apk.sha256)
 grep -E 'Verified using|Signer #1 certificate SHA-256' "$ROOT/verification/apk-signature.log"
 grep -E 'package:|sdkVersion|targetSdkVersion|application-label:' "$ROOT/verification/apk-badging.log" | head -5
-ls -lh "$ROOT/../Pelican.apk";cat "$ROOT/verification/Pelican.apk.sha256"
+ls -lh "$ROOT/build/Pelican.apk";cat "$ROOT/build/Pelican.apk.sha256"
